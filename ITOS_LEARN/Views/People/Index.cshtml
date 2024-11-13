@@ -1,0 +1,48 @@
+﻿@model IEnumerable<ITOS_LEARN.Models.Person>
+@{
+    ViewData["Title"] = "People";
+}
+
+<h2>รายชื่อบุคคลในระบบ</h2>
+
+<!-- ปุ่มค้นหา -->
+<form method="get">
+    <input type="text" name="searchTerm" placeholder="ค้นหาชื่อ, นามสกุล, วันเกิด, ตำแหน่งงาน หรือ ID" value="@ViewData["SearchTerm"]" />
+    <button type="submit">ค้นหา</button>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>ชื่อ</th>
+            <th>นามสกุล</th>
+            <th>วันเกิด</th>
+            <th>อีเมล</th>
+            <th>เบอร์โทรศัพท์</th>
+            <th>ตำแหน่งงาน</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var person in Model)
+        {
+            <tr>
+                <td>@person.ID</td>
+                <td>@person.FirstName</td>
+                <td>@person.LastName</td>
+                <td>@person.BirthDate.ToShortDateString()</td>
+                <td>@person.Email</td>
+                <td>@person.PhoneNumber</td>
+                <td>@person.JobPosition</td>
+                <td>
+                    <a href="@Url.Action("Edit", new { id = person.ID })">แก้ไข</a> |
+                    <a href="@Url.Action("Delete", new { id = person.ID })" style = "color:red" >ลบ</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Create">เพิ่มบุคคลใหม่</a>
+

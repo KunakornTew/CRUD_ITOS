@@ -1,0 +1,29 @@
+﻿@model Person
+
+<h2>ลบข้อมูลบุคคล</h2>
+
+<p>คุณแน่ใจหรือไม่ว่าต้องการลบบุคคลนี้?</p>
+
+<div>
+    <h4>@Model.FirstName @Model.LastName</h4>
+    <dl class="row">
+        <dt class="col-sm-2">วันเกิด</dt>
+        <dd class="col-sm-10">@Model.BirthDate.ToShortDateString()</dd>
+
+        <dt class="col-sm-2">อีเมล</dt>
+        <dd class="col-sm-10">@Model.Email</dd>
+
+        <dt class="col-sm-2">เบอร์โทรศัพท์</dt>
+        <dd class="col-sm-10">@Model.PhoneNumber</dd>
+
+        <dt class="col-sm-2">ตำแหน่งงาน</dt>
+        <dd class="col-sm-10">@Model.JobPosition</dd>
+    </dl>
+</div>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="ID" />
+    <button type="submit" class="btn btn-danger">ลบ</button> |
+    <a asp-action="Index">ยกเลิก</a>
+</form>
+
